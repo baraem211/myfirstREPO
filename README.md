@@ -55,4 +55,7 @@
 | **비유** | 메뉴판, 테이블, 조명 | 레시피, 조리 기구, 식재료 창고 |
 
 ---
+
+<img width="503" height="468" alt="image" src="https://github.com/user-attachments/assets/75acfe4e-51ec-40bf-b101-b5d35a02d257" />
+
 *본 문서는 학습용으로 제작되었습니다.*

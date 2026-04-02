@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SchedulAI — 말하면 완성되는 AI 일정 비서. 연락처·메모·캘린더·날씨를 분석해 맞춤 하루 코스를 자동 완성합니다." />
+  <title>SchedulAI — AI 기반 스마트 일정 관리</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="nav" role="navigation" aria-label="메인 네비게이션">
+  <a href="index.html" class="nav-logo" aria-label="SchedulAI 홈">
+    <div class="nav-logo-icon" aria-hidden="true">🗓️</div>
+    <span class="nav-logo-text">SchedulAI</span>
+  </a>
+
+  <ul class="nav-menu" id="navMenu" role="menubar">
+    <li role="none"><a href="#features" class="nav-link" role="menuitem">기능</a></li>
+    <li role="none"><a href="#how" class="nav-link" role="menuitem">작동 방식</a></li>
+    <li role="none"><a href="#compare" class="nav-link" role="menuitem">서비스 비교</a></li>
+    <li role="none"><a href="#pricing" class="nav-link" role="menuitem">요금제</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="dashboard.html" class="btn btn-outline btn-sm">대시보드</a>
+    <a href="recommend.html" class="btn btn-primary btn-sm">AI 추천 체험 →</a>
+  </div>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== Hero Section ===== -->
+<section class="hero" aria-label="SchedulAI 소개">
+  <div class="hero-inner">
+
+    <!-- Left: Text -->
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="dot" aria-hidden="true"></span>
+        AI 기반 스마트 일정 관리 · 베타 오픈
+      </div>
+
+      <h1 class="hero-title">
+        당신의 삶을<br />
+        연결하는<br />
+        <span class="highlight">AI 일정 비서</span>
+      </h1>
+
+      <p class="hero-desc">
+        "친구 생일" 한 마디면 AI가 연락처·메모·날씨·캘린더를<br />
+        동시에 분석해 완벽한 하루 코스를 자동으로 완성합니다.
+      </p>
+
+      <div class="hero-cta">
+        <a href="recommend.html" class="btn btn-primary btn-lg" aria-label="AI 추천 지금 체험하기">
+          ✨ AI 추천 지금 체험하기
+        </a>
+        <a href="dashboard.html" class="btn btn-outline btn-lg">
+          대시보드 보기
+        </a>
+      </div>
+
+      <div class="hero-stats" role="list" aria-label="서비스 성과 지표">
+        <div class="hero-stat" role="listitem">
+          <div class="value">85%</div>
+          <div class="label">계획 시간 단축</div>
+        </div>
+        <div class="hero-stat" role="listitem">
+          <div class="value">3x</div>
+          <div class="label">약속 만족도 향상</div>
+        </div>
+        <div class="hero-stat" role="listitem">
+          <div class="value">100%</div>
+          <div class="label">온디바이스 보안</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Visual Mockup -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-mockup">
+        <div class="mockup-header">
+          <div class="mockup-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="mockup-title">AI 일정 추천 결과</span>
+        </div>
+
+        <div class="mockup-input-row">
+          <div class="mockup-input">
+            <span>🎂</span>
+            <span class="placeholder-text">친구 생일 챙기고 싶어</span>
+          </div>
+          <div class="mockup-btn">AI 분석</div>
+        </div>
+
+        <div class="mockup-timeline">
+          <div class="timeline-item">
+            <span class="timeline-time">12:00</span>
+            <div class="timeline-info">
+              <div class="timeline-name">이탈리안 레스토랑</div>
+              <div class="timeline-sub">강남 · 매운 음식 없음 · ★4.8</div>
+            </div>
+            <span class="timeline-emoji">🍝</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">14:00</span>
+            <div class="timeline-info">
+              <div class="timeline-name">보드게임 카페</div>
+              <div class="timeline-sub">위시리스트 · 2인 예약 완료</div>
+            </div>
+            <span class="timeline-emoji">🎲</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-time">17:00</span>
+            <div class="timeline-info">
+              <div class="timeline-name">재즈 공연</div>
+              <div class="timeline-sub">음악 취향 매칭 · 날씨 맑음</div>
+            </div>
+            <span class="timeline-emoji">🎷</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Cards -->
+      <div class="float-card float-card-1">
+        <span class="fc-icon">✅</span>
+        <div class="fc-text">
+          <div class="fc-title">AI 분석 완료</div>
+          <div class="fc-desc">데이터 12건 연결</div>
+        </div>
+      </div>
+
+      <div class="float-card float-card-2">
+        <span class="fc-icon">⏰</span>
+        <div class="fc-text">
+          <div class="fc-title">Golden Time 발견</div>
+          <div class="fc-desc">토요일 오후 2–4시</div>
+        </div>
+      </div>
+
+      <div class="float-card float-card-3">
+        <span class="fc-icon">🌤️</span>
+        <div class="fc-text">
+          <div class="fc-title">날씨 대응 완료</div>
+          <div class="fc-desc">실내 코스 자동 전환</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== Integration Logos ===== -->
+<div class="integrations" aria-label="연동 서비스">
+  <div class="integrations-inner">
+    <span class="int-label">연동 가능한 서비스</span>
+    <div class="int-logos">
+      <span class="int-logo"><span class="int-icon">📅</span> Google Calendar</span>
+      <span class="int-logo"><span class="int-icon">🍎</span> Apple Calendar</span>
+      <span class="int-logo"><span class="int-icon">💬</span> Slack</span>
+      <span class="int-logo"><span class="int-icon">💛</span> KakaoTalk</span>
+      <span class="int-logo"><span class="int-icon">📝</span> Notion</span>
+      <span class="int-logo"><span class="int-icon">🗺️</span> Naver Map</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Features Section ===== -->
+<section id="features" class="section" aria-labelledby="features-title">
+  <div class="container">
+    <div class="section-label" aria-hidden="true">✦ 핵심 기능</div>
+    <h2 class="section-title" id="features-title">파편화된 데이터를<br />하나의 스토리로</h2>
+    <p class="section-desc">4개의 데이터 소스를 연결해 사용자가 상상하지 못한 맞춤 일정을 자동으로 완성합니다.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">🧠</div>
+        <h3>다차원 컨텍스트 분석</h3>
+        <p>연락처 취향 태그, 메모의 위시리스트, 캘린더 빈 시간, 날씨 예보를 AI가 동시에 분석하여 하나의 맥락으로 통합합니다.</p>
+        <div class="feature-tags">
+          <span class="feature-tag">연락처 태그</span>
+          <span class="feature-tag">위시리스트</span>
+          <span class="feature-tag">날씨 연동</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">🗺️</div>
+        <h3>연속성 있는 코스 추천</h3>
+        <p>단순 장소 나열이 아닌 이동 시간·동선·날씨를 고려한 완결된 하루 일정 코스를 자동으로 생성합니다.</p>
+        <div class="feature-tags">
+          <span class="feature-tag">동선 최적화</span>
+          <span class="feature-tag">날씨 대응</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">📈</div>
+        <h3>사용할수록 스마트해지는 학습</h3>
+        <p>과거 선택 이력을 지속 학습하여 개인 취향 모델을 업데이트하고 갈수록 정확도가 높아지는 개인화 추천을 제공합니다.</p>
+        <div class="feature-tags">
+          <span class="feature-tag">취향 학습</span>
+          <span class="feature-tag">개인화</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">🔒</div>
+        <h3>온디바이스 프라이버시</h3>
+        <p>모든 AI 분석은 기기 내부에서 처리됩니다. 메시지와 메모가 외부 서버로 전송되지 않아 완전한 개인정보 보호를 보장합니다.</p>
+        <div class="feature-tags">
+          <span class="feature-tag">On-Device AI</span>
+          <span class="feature-tag">서버 전송 없음</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">📤</div>
+        <h3>원터치 공유 & 초대</h3>
+        <p>확정된 일정을 카카오톡, 문자, 캘린더로 즉시 공유하고, 상대방 수락 시 양쪽 캘린더에 자동 동기화됩니다.</p>
+        <div class="feature-tags">
+          <span class="feature-tag">카카오톡 공유</span>
+          <span class="feature-tag">자동 동기화</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">🔔</div>
+        <h3>상황 인지형 스마트 알림</h3>
+        <p>이동 시간을 역산하여 "지금 출발해야 해요" 맞춤 알림을 보냅니다. 교통 체증 감지 시 출발 시간을 자동 조정합니다.</p>
+        <div class="feature-tags">
+          <span class="feature-tag">교통 감지</span>
+          <span class="feature-tag">스마트 알림</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== How It Works ===== -->
+<section id="how" class="section section-alt" aria-labelledby="how-title">
+  <div class="container">
+    <div class="section-label" aria-hidden="true">⚡ 작동 방식</div>
+    <h2 class="section-title" id="how-title">단 한 문장으로<br />완벽한 하루를</h2>
+    <p class="section-desc">"친구 생일 챙기고 싶어"라고 입력하면 AI가 4단계로 완벽한 일정을 만들어냅니다.</p>
+
+    <div class="how-steps" role="list">
+      <div class="how-step" role="listitem">
+        <div class="step-number" aria-label="1단계">1</div>
+        <h4>자연어 입력</h4>
+        <p>말하듯 입력하거나 음성으로 말하면 AI가 의도와 컨텍스트를 파악합니다.</p>
+      </div>
+      <div class="how-step" role="listitem">
+        <div class="step-number" aria-label="2단계">2</div>
+        <h4>다차원 데이터 분석</h4>
+        <p>연락처·메모·캘린더·날씨를 동시 스캔하여 관련 데이터를 추출합니다.</p>
+      </div>
+      <div class="how-step" role="listitem">
+        <div class="step-number" aria-label="3단계">3</div>
+        <h4>맞춤 코스 생성</h4>
+        <p>이동 동선·시간·취향·날씨를 고려한 완결된 일정 코스를 생성합니다.</p>
+      </div>
+      <div class="how-step" role="listitem">
+        <div class="step-number" aria-label="4단계">4</div>
+        <h4>원터치 확정 & 공유</h4>
+        <p>수락 버튼 하나로 캘린더 등록과 초대장 발송이 완료됩니다.</p>
+      </div>
+    </div>
+
+    <!-- Demo Data Card -->
+    <div class="demo-card" aria-label="AI 분석 예시">
+      <div class="demo-title">데이터 분석 예시 (실시간)</div>
+      <div class="demo-sources">
+        <div class="demo-source">
+          <span class="ds-icon">👤</span>
+          <div>
+            <div class="ds-label">연락처</div>
+            <div class="ds-value">민준: 매운 거 못 먹음, 음악 좋아함</div>
+          </div>
+        </div>
+        <div class="demo-source">
+          <span class="ds-icon">📝</span>
+          <div>
+            <div class="ds-label">메모</div>
+            <div class="ds-value">"보드게임 하자" (6개월 전 메모)</div>
+          </div>
+        </div>
+        <div class="demo-source">
+          <span class="ds-icon">📅</span>
+          <div>
+            <div class="ds-label">캘린더</div>
+            <div class="ds-value">토요일 오후 2시~6시 공통 여유</div>
+          </div>
+        </div>
+        <div class="demo-source">
+          <span class="ds-icon">🌤️</span>
+          <div>
+            <div class="ds-label">날씨</div>
+            <div class="ds-value">토요일 오전 우천 → 오후 맑음</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Comparison ===== -->
+<section id="compare" class="section" aria-labelledby="compare-title">
+  <div class="container">
+    <div class="section-label" aria-hidden="true">🆚 서비스 비교</div>
+    <h2 class="section-title" id="compare-title">다른 서비스와<br />무엇이 다른가요?</h2>
+
+    <div class="compare-wrap" role="region" aria-label="서비스 기능 비교표">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">기능</th>
+            <th scope="col" class="highlight-col">SchedulAI</th>
+            <th scope="col">Google Calendar</th>
+            <th scope="col">Reclaim.ai</th>
+            <th scope="col">Fantastical</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>자연어 일정 입력</td>
+            <td class="highlight-col"><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-yes" aria-label="지원">✓</span></td>
+          </tr>
+          <tr>
+            <td>연락처 취향 태그 연동</td>
+            <td class="highlight-col"><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+          </tr>
+          <tr>
+            <td>메모/메신저 위시리스트 추출</td>
+            <td class="highlight-col"><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+          </tr>
+          <tr>
+            <td>Golden Time 자동 계산</td>
+            <td class="highlight-col"><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+          </tr>
+          <tr>
+            <td>날씨 연동 코스 자동 변경</td>
+            <td class="highlight-col"><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+          </tr>
+          <tr>
+            <td>연속 코스(동선) 추천</td>
+            <td class="highlight-col"><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+          </tr>
+          <tr>
+            <td>온디바이스 AI 처리</td>
+            <td class="highlight-col"><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+          </tr>
+          <tr>
+            <td>학습 기반 취향 모델</td>
+            <td class="highlight-col"><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+            <td><span class="check-yes" aria-label="지원">✓</span></td>
+            <td><span class="check-no" aria-label="미지원">✗</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Pricing ===== -->
+<section id="pricing" class="section section-alt" aria-labelledby="pricing-title">
+  <div class="container">
+    <div class="section-label" aria-hidden="true">💳 요금제</div>
+    <h2 class="section-title" id="pricing-title">합리적인 가격으로<br />스마트하게</h2>
+    <p class="section-desc">회원가입 없이도 AI 추천을 무료로 체험할 수 있습니다.</p>
+
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="pricing-card">
+        <div class="pricing-name">Free</div>
+        <div class="pricing-price"><sup>₩</sup>0<span class="per">/월</span></div>
+        <div class="pricing-desc">AI 스케줄러를 가볍게 시작</div>
+        <ul class="pricing-features" aria-label="Free 플랜 기능">
+          <li class="included">AI 추천 월 10회</li>
+          <li class="included">캘린더 연동 1개</li>
+          <li class="included">기본 코스 추천</li>
+          <li class="included">날씨 연동</li>
+          <li class="excluded">학습형 취향 모델</li>
+        </ul>
+        <a href="recommend.html" class="btn btn-outline" style="width:100%;justify-content:center;" aria-label="Free 플랜으로 시작하기">시작하기</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card popular" aria-label="가장 인기있는 요금제">
+        <div class="popular-badge">가장 인기</div>
+        <div class="pricing-name">Pro</div>
+        <div class="pricing-price"><sup>₩</sup>9,900<span class="per">/월</span></div>
+        <div class="pricing-desc">개인 사용자를 위한 완전한 경험</div>
+        <ul class="pricing-features" aria-label="Pro 플랜 기능">
+          <li class="included">AI 추천 무제한</li>
+          <li class="included">캘린더 연동 무제한</li>
+          <li class="included">날씨 · 교통 실시간 연동</li>
+          <li class="included">학습형 취향 모델</li>
+          <li class="included">원터치 공유 & 초대</li>
+        </ul>
+        <a href="recommend.html" class="btn btn-primary" style="width:100%;justify-content:center;" aria-label="Pro 플랜 무료 체험 시작">무료 체험 시작</a>
+      </div>
+
+      <!-- Team -->
+      <div class="pricing-card">
+        <div class="pricing-name">Team</div>
+        <div class="pricing-price"><sup>₩</sup>29,900<span class="per">/월</span></div>
+        <div class="pricing-desc">팀과 함께하는 공동 일정 관리</div>
+        <ul class="pricing-features" aria-label="Team 플랜 기능">
+          <li class="included">Pro 모든 기능 포함</li>
+          <li class="included">팀원 최대 10명</li>
+          <li class="included">공동 일정 Golden Time</li>
+          <li class="included">팀 취향 분석 대시보드</li>
+          <li class="included">우선 고객 지원</li>
+        </ul>
+        <a href="recommend.html" class="btn btn-outline" style="width:100%;justify-content:center;" aria-label="Team 플랜 문의하기">문의하기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section" aria-labelledby="cta-title">
+  <h2 id="cta-title">지금 바로 AI 추천을 경험하세요</h2>
+  <p>회원가입 없이 즉시 체험 가능합니다.<br />"친구 생일"을 입력해보세요.</p>
+  <a href="recommend.html" class="btn btn-white btn-lg" aria-label="AI 추천 무료 체험하기">✨ 무료로 체험하기</a>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="margin-bottom:0" aria-label="SchedulAI 홈">
+        <div class="nav-logo-icon" aria-hidden="true">🗓️</div>
+        <span class="nav-logo-text">SchedulAI</span>
+      </a>
+      <p>AI 기반 스마트 일정 관리 서비스.<br />당신의 삶을 연결하는 AI 일정 비서.</p>
+    </div>
+    <div class="footer-col">
+      <h4>서비스</h4>
+      <ul>
+        <li><a href="recommend.html">AI 추천</a></li>
+        <li><a href="dashboard.html">대시보드</a></li>
+        <li><a href="#features">핵심 기능</a></li>
+        <li><a href="#pricing">요금제</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>회사</h4>
+      <ul>
+        <li><a href="#">회사 소개</a></li>
+        <li><a href="#">블로그</a></li>
+        <li><a href="#">채용</a></li>
+        <li><a href="#">파트너십</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>지원</h4>
+      <ul>
+        <li><a href="#">도움말 센터</a></li>
+        <li><a href="#">개인정보처리방침</a></li>
+        <li><a href="#">이용약관</a></li>
+        <li><a href="#">고객 지원</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 SchedulAI. All rights reserved.</span>
+    <span>🇰🇷 Made in Korea · 베타 서비스</span>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/landing.js"></script>
+</body>
+</html>

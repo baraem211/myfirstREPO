@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SchedulAI 대시보드 — 내 일정과 AI 추천 현황을 한눈에 확인하세요." />
+  <title>대시보드 — SchedulAI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body class="dashboard-layout">
+
+<!-- ===== Navigation ===== -->
+<nav class="nav" role="navigation" aria-label="메인 네비게이션">
+  <a href="index.html" class="nav-logo" aria-label="SchedulAI 홈">
+    <div class="nav-logo-icon" aria-hidden="true">🗓️</div>
+    <span class="nav-logo-text">SchedulAI</span>
+  </a>
+
+  <ul class="nav-menu" id="navMenu" role="menubar">
+    <li role="none"><a href="index.html#features" class="nav-link" role="menuitem">기능</a></li>
+    <li role="none"><a href="index.html#pricing" class="nav-link" role="menuitem">요금제</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="recommend.html" class="btn btn-primary btn-sm">✨ AI 추천</a>
+    <a href="index.html" class="btn btn-ghost btn-sm">홈</a>
+  </div>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== Dashboard Body ===== -->
+<div class="dashboard-body">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" aria-label="대시보드 사이드바">
+    <div class="sidebar-user">
+      <div class="user-avatar" aria-hidden="true">최</div>
+      <div>
+        <div class="user-name">최주연</div>
+        <div class="user-plan">Pro 플랜</div>
+      </div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">메인</div>
+      <a href="dashboard.html" class="sidebar-link active" aria-current="page">
+        <span class="sl-icon">🏠</span> 대시보드
+      </a>
+      <a href="recommend.html" class="sidebar-link">
+        <span class="sl-icon">✨</span> AI 추천
+        <span class="sl-badge">NEW</span>
+      </a>
+      <a href="#" class="sidebar-link">
+        <span class="sl-icon">📅</span> 캘린더
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">분석</div>
+      <a href="#" class="sidebar-link">
+        <span class="sl-icon">📊</span> 통계
+      </a>
+      <a href="#" class="sidebar-link">
+        <span class="sl-icon">👤</span> 연락처 분석
+      </a>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-section">
+      <a href="index.html" class="sidebar-link">
+        <span class="sl-icon">⚙️</span> 설정
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="dashboard-main" id="dashMain">
+
+    <!-- Page Header -->
+    <div class="dash-page-header">
+      <div>
+        <h1>안녕하세요, 최주연님 👋</h1>
+        <p>오늘도 완벽한 하루를 계획해 보세요.</p>
+      </div>
+      <a href="recommend.html" class="btn btn-primary" aria-label="AI 추천 받기">
+        ✨ AI 추천 받기
+      </a>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="kpi-grid" role="list" aria-label="주요 지표">
+      <div class="kpi-card" role="listitem">
+        <div class="kpi-icon" aria-hidden="true">✨</div>
+        <div class="kpi-value">7</div>
+        <div class="kpi-label">이번 달 AI 추천 횟수</div>
+        <div class="kpi-change up" aria-label="지난달 대비 증가">↑ 지난달보다 3회 더</div>
+      </div>
+      <div class="kpi-card" role="listitem">
+        <div class="kpi-icon" aria-hidden="true">📅</div>
+        <div class="kpi-value">12</div>
+        <div class="kpi-label">확정된 일정 수</div>
+        <div class="kpi-change up" aria-label="지난달 대비 증가">↑ 전달 대비 +33%</div>
+      </div>
+      <div class="kpi-card" role="listitem">
+        <div class="kpi-icon" aria-hidden="true">⭐</div>
+        <div class="kpi-value">4.8</div>
+        <div class="kpi-label">평균 만족도</div>
+        <div class="kpi-change up" aria-label="지난달 대비 증가">↑ 5회 연속 4점 이상</div>
+      </div>
+      <div class="kpi-card" role="listitem">
+        <div class="kpi-icon" aria-hidden="true">⏱️</div>
+        <div class="kpi-value">68%</div>
+        <div class="kpi-label">계획 시간 단축률</div>
+        <div class="kpi-change neutral" aria-label="지난달과 동일">→ 지난달과 유사</div>
+      </div>
+    </div>
+
+    <!-- Row: Recent Schedules + Calendar -->
+    <div class="dash-grid-3-2">
+
+      <!-- Recent Schedules -->
+      <div class="dash-card" aria-label="최근 일정">
+        <div class="dash-card-header">
+          <div class="dash-card-title">📋 최근 AI 추천 일정</div>
+          <a href="recommend.html" class="dash-card-action">+ 새 추천</a>
+        </div>
+        <div class="schedule-list">
+          <div class="schedule-item">
+            <div class="si-date"><span class="month">4월</span>5</div>
+            <div class="si-body">
+              <div class="si-title">🎂 민준 생일 파티 코스</div>
+              <div class="si-meta">레스토랑 → 보드게임카페 → 재즈공연 · 4곳</div>
+            </div>
+            <span class="si-status confirmed">확정</span>
+          </div>
+          <div class="schedule-item">
+            <div class="si-date"><span class="month">4월</span>12</div>
+            <div class="si-body">
+              <div class="si-title">💕 기념일 데이트 코스</div>
+              <div class="si-meta">브런치 → 유람선 → 파인다이닝 · 3곳</div>
+            </div>
+            <span class="si-status pending">준비 중</span>
+          </div>
+          <div class="schedule-item">
+            <div class="si-date"><span class="month">4월</span>19</div>
+            <div class="si-body">
+              <div class="si-title">🌿 혼자 힐링 데이</div>
+              <div class="si-meta">서점 → 브런치 → 한강 → 스파 · 4곳</div>
+            </div>
+            <span class="si-status pending">준비 중</span>
+          </div>
+          <div class="schedule-item">
+            <div class="si-date"><span class="month">3월</span>29</div>
+            <div class="si-body">
+              <div class="si-title">🍻 팀 회식 장소 추천</div>
+              <div class="si-meta">한우 다이닝 → 루프탑 바 · 2곳</div>
+            </div>
+            <span class="si-status confirmed">완료</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini Calendar -->
+      <div class="dash-card" aria-label="달력">
+        <div class="dash-card-header">
+          <div class="dash-card-title">📅 일정 달력</div>
+        </div>
+        <div class="mini-calendar">
+          <div class="cal-nav">
+            <button class="cal-nav-btn" aria-label="이전 달">◀</button>
+            <span class="cal-nav-title">2026년 4월</span>
+            <button class="cal-nav-btn" aria-label="다음 달">▶</button>
+          </div>
+          <div class="cal-grid" aria-label="2026년 4월 달력">
+            <div class="cal-day-label">일</div>
+            <div class="cal-day-label">월</div>
+            <div class="cal-day-label">화</div>
+            <div class="cal-day-label">수</div>
+            <div class="cal-day-label">목</div>
+            <div class="cal-day-label">금</div>
+            <div class="cal-day-label">토</div>
+
+            <!-- Padding for April 2026 (starts Wednesday) -->
+            <div class="cal-day other-month">29</div>
+            <div class="cal-day other-month">30</div>
+            <div class="cal-day other-month">31</div>
+            <div class="cal-day">1</div>
+            <div class="cal-day">2</div>
+            <div class="cal-day">3</div>
+            <div class="cal-day has-event">4</div>
+
+            <div class="cal-day has-event">5</div>
+            <div class="cal-day">6</div>
+            <div class="cal-day">7</div>
+            <div class="cal-day">8</div>
+            <div class="cal-day">9</div>
+            <div class="cal-day">10</div>
+            <div class="cal-day has-event">11</div>
+
+            <div class="cal-day has-event">12</div>
+            <div class="cal-day">13</div>
+            <div class="cal-day">14</div>
+            <div class="cal-day">15</div>
+            <div class="cal-day">16</div>
+            <div class="cal-day">17</div>
+            <div class="cal-day has-event">18</div>
+
+            <div class="cal-day has-event">19</div>
+            <div class="cal-day today">20</div>
+            <div class="cal-day">21</div>
+            <div class="cal-day">22</div>
+            <div class="cal-day">23</div>
+            <div class="cal-day">24</div>
+            <div class="cal-day">25</div>
+
+            <div class="cal-day">26</div>
+            <div class="cal-day">27</div>
+            <div class="cal-day">28</div>
+            <div class="cal-day">29</div>
+            <div class="cal-day">30</div>
+            <div class="cal-day other-month">1</div>
+            <div class="cal-day other-month">2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row: Taste Profile + Notifications -->
+    <div class="dash-grid-2">
+
+      <!-- Taste Profile -->
+      <div class="dash-card" aria-label="취향 프로필">
+        <div class="dash-card-header">
+          <div class="dash-card-title">🎯 AI 학습 취향 프로필</div>
+          <span class="dash-card-action">갱신 중</span>
+        </div>
+        <div class="taste-list" id="tasteList">
+          <!-- JS로 렌더링 -->
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="dash-card" aria-label="알림 피드">
+        <div class="dash-card-header">
+          <div class="dash-card-title">🔔 스마트 알림</div>
+          <span class="badge badge-primary">3개 신규</span>
+        </div>
+        <div class="notif-list">
+          <div class="notif-item">
+            <span class="notif-icon">🚗</span>
+            <div class="notif-text"><strong>지금 출발하세요!</strong> 보드게임 카페까지 26분 소요. 교통 체증 감지 — 10분 일찍 출발 권장.</div>
+            <span class="notif-time">방금</span>
+          </div>
+          <div class="notif-item">
+            <span class="notif-icon">☀️</span>
+            <div class="notif-text"><strong>날씨 업데이트:</strong> 4월 5일 오후 맑음 예상. 기존 실내 코스를 <strong>야외 코스로 변경</strong>할 수 있어요.</div>
+            <span class="notif-time">1시간 전</span>
+          </div>
+          <div class="notif-item">
+            <span class="notif-icon">🎂</span>
+            <div class="notif-text"><strong>민준님 생일</strong>이 3일 후입니다. AI 추천 일정을 확정하고 초대장을 보내세요!</div>
+            <span class="notif-time">어제</span>
+          </div>
+          <div class="notif-item">
+            <span class="notif-icon">✨</span>
+            <div class="notif-text"><strong>새로운 취향 학습:</strong> 최근 이탈리안 레스토랑 선택 이력을 반영해 추천 모델이 업데이트됐습니다.</div>
+            <span class="notif-time">2일 전</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="cta-card" aria-label="AI 추천 바로가기">
+      <div class="cta-card-text">
+        <h3>다음 일정도 AI로 완성하세요 ✨</h3>
+        <p>한 문장 입력으로 완벽한 하루 코스를 자동 생성합니다.</p>
+      </div>
+      <a href="recommend.html" class="btn" style="background:#fff;color:var(--primary-dark);font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,0.15);" aria-label="AI 추천 페이지로 이동">
+        AI 추천 받기 →
+      </a>
+    </div>
+
+  </main>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-bottom" style="max-width:1400px;margin:0 auto;padding:0 clamp(12px,3vw,32px);">
+    <span>© 2025 SchedulAI. All rights reserved.</span>
+    <a href="index.html" class="btn btn-ghost btn-sm">홈으로 →</a>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SchedulAI AI 추천 — 자연어로 입력하거나 음성으로 말하면 AI가 완벽한 하루를 설계합니다." />
+  <title>AI 추천 — SchedulAI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/recommend.css" />
+</head>
+<body class="recommend-page">
+
+<!-- ===== Navigation ===== -->
+<nav class="nav" role="navigation" aria-label="메인 네비게이션">
+  <a href="index.html" class="nav-logo" aria-label="SchedulAI 홈">
+    <div class="nav-logo-icon" aria-hidden="true">🗓️</div>
+    <span class="nav-logo-text">SchedulAI</span>
+  </a>
+
+  <ul class="nav-menu" id="navMenu" role="menubar">
+    <li role="none"><a href="index.html#features" class="nav-link" role="menuitem">기능</a></li>
+    <li role="none"><a href="index.html#how" class="nav-link" role="menuitem">작동 방식</a></li>
+    <li role="none"><a href="index.html#pricing" class="nav-link" role="menuitem">요금제</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="dashboard.html" class="btn btn-outline btn-sm">대시보드</a>
+    <a href="index.html" class="btn btn-ghost btn-sm">← 홈으로</a>
+  </div>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== Page Header ===== -->
+<div class="recommend-header">
+  <h1>✨ AI 일정 추천</h1>
+  <p>자연어로 입력하거나 음성으로 말하면 AI가 완벽한 하루를 설계합니다.</p>
+</div>
+
+<!-- ===== Main Body ===== -->
+<main class="recommend-body" id="recommendBody">
+
+  <!-- Left: Input Panel -->
+  <section class="input-panel" aria-label="일정 입력">
+
+    <!-- Panel Header with Mode Tabs -->
+    <div class="input-panel-header">
+      <h2>일정 요청하기</h2>
+      <div class="mode-tabs" role="tablist" aria-label="입력 방식 선택">
+        <button class="mode-tab active" id="tabText" role="tab" aria-selected="true" aria-controls="textPanel">
+          ⌨️ 텍스트
+        </button>
+        <button class="mode-tab" id="tabVoice" role="tab" aria-selected="false" aria-controls="voicePanel">
+          🎙️ 음성
+        </button>
+      </div>
+    </div>
+
+    <div class="input-panel-body">
+
+      <!-- Quick Examples -->
+      <div class="quick-examples" role="list" aria-label="빠른 예시">
+        <button class="quick-chip" role="listitem" data-text="친구 생일을 특별하게 보내고 싶어">🎂 친구 생일</button>
+        <button class="quick-chip" role="listitem" data-text="팀 회식 장소 추천해줘">🍻 팀 회식</button>
+        <button class="quick-chip" role="listitem" data-text="혼자 힐링할 수 있는 하루 코스 만들어줘">🌿 혼자 힐링</button>
+        <button class="quick-chip" role="listitem" data-text="기념일 데이트 코스 추천해줘">💕 기념일 데이트</button>
+        <button class="quick-chip" role="listitem" data-text="가족과 함께하는 주말 나들이 계획 세워줘">👨‍👩‍👧 가족 나들이</button>
+      </div>
+
+      <!-- TEXT INPUT PANEL -->
+      <div id="textPanel" role="tabpanel" aria-labelledby="tabText">
+        <div class="text-input-area">
+          <div class="textarea-wrap">
+            <textarea
+              id="textInput"
+              placeholder="예) 이번 주 토요일 민준이 생일인데 특별하게 해주고 싶어. 민준이는 매운 거 못 먹고 음악 좋아해."
+              maxlength="500"
+              aria-label="일정 요청 입력"
+            ></textarea>
+            <span class="char-count" aria-live="polite"><span id="charCount">0</span>/500</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VOICE INPUT PANEL -->
+      <div id="voicePanel" role="tabpanel" aria-labelledby="tabVoice" style="display:none;">
+        <div class="voice-input-area">
+          <div class="mic-wrapper">
+            <div class="mic-pulse" id="micPulse" aria-hidden="true"></div>
+            <button class="mic-btn" id="micBtn" aria-label="음성 입력 시작" title="클릭하여 음성 입력 시작">
+              🎙️
+            </button>
+          </div>
+          <div class="voice-status" id="voiceStatus" aria-live="polite">
+            버튼을 눌러 말씀해 주세요
+          </div>
+
+          <!-- Unsupported browser notice -->
+          <div class="unsupported-notice" id="unsupportedNotice" role="alert">
+            ⚠️ 현재 브라우저는 음성 입력을 지원하지 않습니다.<br />
+            Chrome, Edge, Safari를 사용해 주세요.
+            <br /><br />
+            <button class="btn btn-outline btn-sm" onclick="switchToText()" style="margin:0 auto;">텍스트로 입력하기</button>
+          </div>
+
+          <!-- Transcript display -->
+          <div class="voice-transcript" id="voiceTranscript" aria-live="assertive" aria-label="음성 인식 결과">
+          </div>
+
+          <!-- Voice action buttons -->
+          <div class="voice-actions" id="voiceActions">
+            <button class="btn btn-primary" id="voiceConfirmBtn" style="flex:1;" aria-label="인식된 내용 확인 및 분석 시작">
+              ✓ 확인하고 분석하기
+            </button>
+            <button class="btn btn-outline" id="voiceRetryBtn" aria-label="다시 녹음하기">
+              🔄 다시
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="settings-section">
+      <div class="settings-title" id="settingsToggle" role="button" tabindex="0" aria-expanded="true" aria-controls="settingsGrid">
+        상세 설정
+      </div>
+      <div class="settings-grid" id="settingsGrid">
+        <div class="setting-item">
+          <label for="settingDate">날짜</label>
+          <input type="text" id="settingDate" placeholder="예: 이번 주 토요일" aria-label="날짜 설정" />
+        </div>
+        <div class="setting-item">
+          <label for="settingPeople">인원</label>
+          <select id="settingPeople" aria-label="인원 수 설정">
+            <option value="1">1명 (혼자)</option>
+            <option value="2" selected>2명</option>
+            <option value="3">3명</option>
+            <option value="4">4명</option>
+            <option value="5+">5명 이상</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label for="settingBudget">예산</label>
+          <select id="settingBudget" aria-label="예산 설정">
+            <option value="low">3만원 이하</option>
+            <option value="mid" selected>3~10만원</option>
+            <option value="high">10~30만원</option>
+            <option value="vip">30만원 이상</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label for="settingMood">분위기</label>
+          <select id="settingMood" aria-label="분위기 설정">
+            <option value="casual" selected>캐주얼</option>
+            <option value="romantic">로맨틱</option>
+            <option value="active">액티브</option>
+            <option value="relaxed">힐링</option>
+            <option value="formal">격식</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Sources Status -->
+    <div class="sources-section">
+      <div class="sources-title">분석 데이터 소스</div>
+      <div class="sources-grid" id="sourcesGrid">
+        <div class="source-item" id="src-contacts">
+          <span class="src-icon">👤</span>
+          <span class="src-name">연락처</span>
+          <span class="src-status">대기 중</span>
+        </div>
+        <div class="source-item" id="src-memo">
+          <span class="src-icon">📝</span>
+          <span class="src-name">메모</span>
+          <span class="src-status">대기 중</span>
+        </div>
+        <div class="source-item" id="src-calendar">
+          <span class="src-icon">📅</span>
+          <span class="src-name">캘린더</span>
+          <span class="src-status">대기 중</span>
+        </div>
+        <div class="source-item" id="src-weather">
+          <span class="src-icon">🌤️</span>
+          <span class="src-name">날씨/교통</span>
+          <span class="src-status">대기 중</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analyze button -->
+    <div class="analyze-section">
+      <button class="btn-analyze" id="analyzeBtn" disabled aria-label="AI 분석 시작" aria-disabled="true">
+        ✨ AI 분석 시작
+      </button>
+      <div class="shortcut-hint" aria-label="단축키 안내">Ctrl + Enter로 빠르게 시작</div>
+    </div>
+
+  </section>
+
+  <!-- Right: Result Panel -->
+  <div class="result-panel" id="resultPanel" aria-live="polite" aria-label="AI 추천 결과">
+
+    <!-- Idle -->
+    <div class="result-idle" id="resultIdle">
+      <div class="idle-icon" aria-hidden="true">🤖</div>
+      <div class="idle-title">AI가 준비되어 있어요</div>
+      <div class="idle-desc">
+        왼쪽에 원하는 일정을 자유롭게 입력하거나<br />
+        음성으로 말씀해 주세요.<br />
+        AI가 최적의 코스를 설계해 드립니다.
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="result-loading" id="resultLoading" aria-label="AI 분석 중">
+      <div class="loading-header">
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <div>
+          <div class="loading-title" id="loadingTitle">데이터 분석 중...</div>
+          <div class="loading-subtitle" id="loadingSubtitle">잠시만 기다려 주세요</div>
+        </div>
+      </div>
+      <div class="loading-steps" role="list">
+        <div class="loading-step" id="lstep-1" role="listitem">
+          <span class="step-icon">👤</span> 연락처에서 취향 태그 추출 중
+        </div>
+        <div class="loading-step" id="lstep-2" role="listitem">
+          <span class="step-icon">📝</span> 메모 & 위시리스트 분석 중
+        </div>
+        <div class="loading-step" id="lstep-3" role="listitem">
+          <span class="step-icon">📅</span> 캘린더 Golden Time 계산 중
+        </div>
+        <div class="loading-step" id="lstep-4" role="listitem">
+          <span class="step-icon">🌤️</span> 날씨 & 교통 정보 연동 중
+        </div>
+        <div class="loading-step" id="lstep-5" role="listitem">
+          <span class="step-icon">🗺️</span> 최적 코스 생성 중
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Result -->
+    <div class="result-success" id="resultSuccess">
+      <!-- Summary -->
+      <div class="result-summary" id="resultSummaryCard" aria-label="추천 요약">
+        <div class="summary-icon" id="summaryIcon">🎉</div>
+        <div class="summary-text">
+          <h3 id="summaryTitle">맞춤 일정이 준비됐어요!</h3>
+          <p id="summaryDesc">AI가 4가지 데이터를 분석해 최적의 하루 코스를 완성했습니다.</p>
+          <div class="summary-badges" id="summaryBadges"></div>
+        </div>
+      </div>
+
+      <!-- Course Timeline -->
+      <div class="course-card" aria-label="추천 일정 코스">
+        <div class="course-header">
+          <h3>🗺️ <span id="courseTitle">추천 코스</span></h3>
+          <span class="badge badge-success" id="courseCount">0곳</span>
+        </div>
+        <div class="course-items" id="courseItems">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- Data Analysis -->
+      <div class="analysis-card" aria-label="분석된 데이터 소스">
+        <h4>📊 분석 데이터</h4>
+        <div class="analysis-grid" id="analysisGrid">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="result-actions">
+        <button class="btn btn-primary" id="btnShare" aria-label="일정 공유하기">
+          📤 공유하기
+        </button>
+        <button class="btn btn-outline" id="btnCalendar" aria-label="캘린더에 추가">
+          📅 캘린더 추가
+        </button>
+        <button class="btn btn-ghost" id="btnRedo" aria-label="다시 추천받기">
+          🔄 다시 추천
+        </button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-bottom" style="max-width:1200px;margin:0 auto;">
+    <span>© 2025 SchedulAI. All rights reserved.</span>
+    <a href="index.html" class="btn btn-ghost btn-sm">홈으로 →</a>
+  </div>
+</footer>
+
+<!-- ===== Share Modal ===== -->
+<div class="modal-overlay" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle">
+  <div class="modal">
+    <h3 id="shareModalTitle">📤 일정 공유하기</h3>
+    <p>완성된 일정을 상대방에게 공유하고 초대장을 보내세요.</p>
+    <div class="modal-options">
+      <button class="modal-option" onclick="handleShare('kakao')">
+        <span class="mo-icon">💛</span>
+        <div>
+          <div class="mo-label">카카오톡으로 공유</div>
+          <div class="mo-desc">카카오톡 채팅방에 일정 카드 전송</div>
+        </div>
+      </button>
+      <button class="modal-option" onclick="handleShare('sms')">
+        <span class="mo-icon">💬</span>
+        <div>
+          <div class="mo-label">문자 메시지로 공유</div>
+          <div class="mo-desc">SMS로 일정 링크 전송</div>
+        </div>
+      </button>
+      <button class="modal-option" onclick="handleShare('copy')">
+        <span class="mo-icon">🔗</span>
+        <div>
+          <div class="mo-label">링크 복사</div>
+          <div class="mo-desc">공유 링크를 클립보드에 복사</div>
+        </div>
+      </button>
+    </div>
+    <button class="btn btn-outline" style="width:100%;justify-content:center;" onclick="closeModal('shareModal')">닫기</button>
+  </div>
+</div>
+
+<!-- ===== Calendar Modal ===== -->
+<div class="modal-overlay" id="calendarModal" role="dialog" aria-modal="true" aria-labelledby="calModalTitle">
+  <div class="modal">
+    <h3 id="calModalTitle">📅 캘린더에 추가하기</h3>
+    <p>어떤 캘린더에 일정을 추가할까요?</p>
+    <div class="modal-options">
+      <button class="modal-option" onclick="handleCalendar('google')">
+        <span class="mo-icon">📅</span>
+        <div>
+          <div class="mo-label">Google Calendar</div>
+          <div class="mo-desc">구글 캘린더에 일정 자동 등록</div>
+        </div>
+      </button>
+      <button class="modal-option" onclick="handleCalendar('apple')">
+        <span class="mo-icon">🍎</span>
+        <div>
+          <div class="mo-label">Apple Calendar</div>
+          <div class="mo-desc">iOS / macOS 캘린더에 추가</div>
+        </div>
+      </button>
+    </div>
+    <button class="btn btn-outline" style="width:100%;justify-content:center;" onclick="closeModal('calendarModal')">닫기</button>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/recommend.js"></script>
+</body>
+</html>

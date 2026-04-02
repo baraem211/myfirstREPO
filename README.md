@@ -2,7 +2,7 @@
 
 > **"친구 생일"이라고 말하면, AI가 연락처·메모·날씨·캘린더를 한번에 분석해 완벽한 하루 코스를 자동으로 완성합니다.**
 
-# 사이트 보기 : https://baraem211.github.io/myfirstREPO/index.html
+### 사이트 보기 : https://baraem211.github.io/myfirstREPO/index.html
 ---
 
 ## 🎯 프로젝트 소개
